@@ -5,3 +5,5 @@ single markdown summary, streamlining async code review for teams.
 """
 
 __version__ = "0.1.0"
+
+__all__ = ["__version__"]
