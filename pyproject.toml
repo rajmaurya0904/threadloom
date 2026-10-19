@@ -4,7 +4,10 @@ version = "0.1.0"
 description = "A CLI tool that aggregates review comments from multiple GitHub pull requests into a single markdown summary, streamlining async code review for teams."
 requires-python = ">=3.11"
 license = { text = "MIT" }
-dependencies = []
+dependencies = [
+    "requests>=2.31",
+    "click>=8.1",
+]
 
 [project.optional-dependencies]
 dev = [
