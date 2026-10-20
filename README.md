@@ -20,7 +20,11 @@ pip install -e ".[dev]"
 
 ## How it works
 
-<!-- 3-6 bullets: what it checks, computes or produces. -->
+- Fetches pull request data from GitHub using the provided token.
+- Retrieves all review comments for each PR via the GitHub API.
+- Parses comment bodies, timestamps, and author information.
+- Aggregates comments across PRs, sorting them chronologically.
+- Formats the aggregated data into a markdown summary with sections per PR.
 
 ## Limitations
 
