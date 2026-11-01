@@ -64,7 +64,9 @@ def render_summary(
     total = sum(len(pr.comments) for pr in prs)
     lines = ["# Review comment summary", ""]
     stamp = fmt_time(generated_at or datetime.now(UTC))
-    lines.append(f"{total} comments across {len(prs)} pull requests (generated {stamp} UTC).")
+    noun = "comment" if total == 1 else "comments"
+    prn = "pull request" if len(prs) == 1 else "pull requests"
+    lines.append(f"{total} {noun} across {len(prs)} {prn} (generated {stamp} UTC).")
     lines.append("")
     counts = reviewer_counts(prs)
     if counts:
@@ -93,7 +95,7 @@ def _render_pr(pr: PullRequest, max_chars: int | None) -> list[str]:
     meta = f"State: {pr.state}"
     if pr.author:
         meta += f" - author @{pr.author}"
-    meta += f" - {len(pr.comments)} comments"
+    meta += f" - {len(pr.comments)} comment" + ("" if len(pr.comments) == 1 else "s")
     lines.append(meta)
     blocking = pending_changes(pr)
     if blocking:

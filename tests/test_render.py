@@ -56,7 +56,7 @@ def test_summary_header_counts() -> None:
 def test_summary_sections_per_pr() -> None:
     out = render_summary([make_pr(comment(), n=7)], generated_at=NOW)
     assert "## [o/r#7](https://github.com/o/r/pull/7) Fix" in out
-    assert "State: open - author @bob - 1 comments" in out
+    assert "State: open - author @bob - 1 comment" in out
 
 
 def test_summary_empty_pr_message() -> None:
@@ -86,3 +86,8 @@ def test_truncation_closes_open_code_fence() -> None:
     body = "```python\n" + "x = 1\n" * 20 + "```"
     text = render_comment(comment(body=body), max_chars=30)
     assert text.count("```") % 2 == 0
+
+
+def test_singular_wording() -> None:
+    out = render_summary([make_pr(comment())], generated_at=NOW)
+    assert "1 comment across 1 pull request (" in out
