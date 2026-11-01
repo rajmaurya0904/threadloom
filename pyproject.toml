@@ -9,6 +9,9 @@ dependencies = [
     "click>=8.1",
 ]
 
+[project.scripts]
+threadloom = "threadloom.cli:main"
+
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
