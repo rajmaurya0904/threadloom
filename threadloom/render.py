@@ -24,6 +24,8 @@ def _quote(body: str, max_chars: int | None) -> str:
     body = body.strip().replace("\r\n", "\n")
     if max_chars and len(body) > max_chars:
         body = body[:max_chars].rstrip() + "..."
+        if body.count("```") % 2:
+            body += "\n```"
     if not body:
         body = "(empty)"
     return "\n".join(f"> {line}" if line else ">" for line in body.split("\n"))

@@ -80,3 +80,9 @@ def test_summary_flags_changes_requested() -> None:
 def test_summary_ends_with_single_newline() -> None:
     out = render_summary([make_pr(comment())], generated_at=NOW)
     assert out.endswith("\n") and not out.endswith("\n\n")
+
+
+def test_truncation_closes_open_code_fence() -> None:
+    body = "```python\n" + "x = 1\n" * 20 + "```"
+    text = render_comment(comment(body=body), max_chars=30)
+    assert text.count("```") % 2 == 0
